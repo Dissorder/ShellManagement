@@ -1,5 +1,5 @@
 # ShellManagement
-Es un pequeno programa que muestra como se administra de forma sencilla un sistema Linux. 
+Es un pequeno programa que muestra como se administra de forma sencilla un sistema GNU/Linux. 
 Muestra funciones para principalmennte ver infromacion de usuarios, grupos, sistema y procesos.
 
 ### Autor
@@ -9,7 +9,7 @@ Edgar Alejandro Hernandez Albino
 Primero se muestra un menu, en donde el usuario sera capaz de elegir la informacion que desea ver, o los 
 cambios que quiere hacer. 
 
-    >> Ingresa la opcion que deseas: 5
+    >> Ingresa la opcion que deseas: 
 
     ---------------------------------------
     1. Manejo de archivos
@@ -109,8 +109,14 @@ Las otras opciones solo muestran un salida sencilla de un comando:
     El numero total de usuarios en el sistema es: 46 
 
 ### 4. Informacion del sistema
-Finalmente, para el ultimo modulo se muestra directamente la infromacion del sistema, ya que aqui no se tiene un
+Finalmente, para el ultimo modulo se muestra directamente la informacion del sistema, ya que aqui no se tiene un
 menu de opciones: 
+
+    echo "Hostname: "$(hostname)" "
+	echo "Sistema Operativo: "$(cat /etc/os-release | head -1  | sed  "s/.*\"\(.*\)\"/\1/1" 2>> errores.log)" "
+	echo "Arquitectura del sistema: "$(lscpu | head -1 | sed "s/.*\(x.*\)/\1/1" 2>> errores.log)" "
+
+La salida seria como la siguiente: 
 
     ----------------------
     -Elegiste la opcion 4-
@@ -118,3 +124,13 @@ menu de opciones:
     Hostname: disorder 
     Sistema Operativo: elementary OS 
     Arquitectura del sistema: x86_64 
+    
+### Consideraciones 
+Es posible que algunos de los comandos implementados en el codigo, no se ejecuten, esto por la version del kernel,
+la distribucion de GNU/Linux, el shell donde se ejecute etc. Estas son las caracteristicas de la maquina donde se 
+realizo el proyecto:
+
+- SO: Elementary OS 6 ODIN (Basado en Debian)
+- Version del kernel: 5.11.0-34-generic
+- Arquitectura: x86_64
+- Shell: bash
